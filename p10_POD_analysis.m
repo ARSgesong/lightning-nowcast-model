@@ -1,5 +1,5 @@
 clear all
-applyset = h5read('/data01/sgdata/2022-闪电与CONUS臭氧/训练数据集/GLM_applyset_CAMS.h5','/applyset');
+applyset = h5read('GLM_applyset_CAMS.h5','/applyset');
 applyset = applyset';
 % Adjustable thresolds tuned here
 applyset(:,20) = applyset(:,19)>0.45;
@@ -37,16 +37,15 @@ for i = 1:112
 end
 
 TIFdata = flip(POD_record);
-fileName = ['/data01/sgdata/2022-闪电与CONUS臭氧/','POD_analysis_1109.tif'];
+fileName = ['POD_analysis.tif'];
 TIFdata = flip(FAR_record);
-fileName = ['/data01/sgdata/2022-闪电与CONUS臭氧/','FAR_analysis_1109.tif'];
+fileName = ['FAR_analysis.tif'];
 TIFdata = flip(CSI_record);
-fileName = ['/data01/sgdata/2022-闪电与CONUS臭氧/','CSI_analysis_1109.tif'];
-%写入地理参考
+fileName = ['CSI_analysis.tif'];
 
-DTM=TIFdata;                  %二维矩阵
-rasterSize=size(DTM);        %矩阵大小
+DTM=TIFdata;                 
+rasterSize=size(DTM);       
 latlim= [23,51];
 lonlim= [-132,-64];
-R = georefcells(latlim,lonlim,rasterSize);    %latlim,lonlim分别为1*2的南北、东西坐标界限。
-geotiffwrite(fileName, DTM, R);     % 系统默认geotiffwrite第4/5参数选择是WGS84
+R = georefcells(latlim,lonlim,rasterSize);   
+geotiffwrite(fileName, DTM, R);    
