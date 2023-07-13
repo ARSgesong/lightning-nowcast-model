@@ -1,10 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Jul 13 16:58:29 2023
-
-@author: sg
-"""
 import json
 import lightgbm as lgb
 import pandas as pd
