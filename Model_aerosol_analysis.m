@@ -1,7 +1,7 @@
 clear all
-applyset = h5read('/data01/sgdata/2022-闪电与CONUS臭氧/训练数据集/GLM_applyset_CAMS_20230515.h5','/applyset');
+applyset = h5read('GLM_applyset_CAMS_20230515.h5','/applyset');
 applyset = applyset';
-applyset2 = h5read('/data01/sgdata/2022-闪电与CONUS臭氧/训练数据集/GLM_applyset_CAMS_noAOD_20230515.h5','/applyset');
+applyset2 = h5read('GLM_applyset_CAMS_noAOD_20230515.h5','/applyset');
 applyset2  =applyset2';
 
 applyset = applyset(applyset(:,1)>0,:);
@@ -9,9 +9,8 @@ applyset = sortrows(applyset,[1 2 3]);
 applyset2 = applyset2(applyset2(:,1)>0,:);
 applyset2 = sortrows(applyset2,[1 2 3]);
 
-% applyset = applyset(applyset(:,1)>200 & applyset(:,1)<215,:);
 applyset(:,17) = applyset(:,16)>0.45;
-applyset2(:,11) = applyset2(:,10)>0.40;
+applyset2(:,11) = applyset2(:,10)>0.45;
 
 set(0,'DefaultAxesFontname','Arial')
 set(0,'DefaultTextFontname','Arial')
@@ -40,7 +39,7 @@ h.FaceColor = [0.1200    0.5600    0.5500];
 grid on
 grid minor
 xlim([0 1]);
-set(ax1,'FontName','Arial','FontWeight','bold','FontSize',10)% 设置加粗字体，字号16
+set(ax1,'FontName','Arial','FontWeight','bold','FontSize',10)
 set(gca,'XTickLabel',' ')
 box off
 axx1 = axes('Position',get(gca,'Position'),...
@@ -104,7 +103,7 @@ xlim([0 1]);
 linkaxes([ax1,ax2],'x');
 % Add shared title and axis labels
 xlabel('AOD')
-set(ax2,'FontName','Arial','FontWeight','bold','FontSize',10)% 设置加粗字体，字号16
+set(ax2,'FontName','Arial','FontWeight','bold','FontSize',10)
 % legend('CSI','FAR','Location','northwest','FontSize',12)
 box off
 axx2 = axes('Position',get(gca,'Position'),...
